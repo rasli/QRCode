@@ -1,0 +1,171 @@
+﻿<UserControl x:Class="QRGenerator.Views.QRGenerator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Behaviour="clr-namespace:QRGenerator.Shared"
+             xmlns:local="clr-namespace:QRGenerator.Views"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600">
+    <UserControl.Resources>
+        <Behaviour:GenBtnConverter x:Key="GenBtnConverter" />
+        <Behaviour:radioBoolToIntConverter x:Key="radioBoolToIntConverter" />
+        <SolidColorBrush x:Key="brushWatermarkBackground" Color="White" />
+        <SolidColorBrush x:Key="brushWatermarkForeground" Color="LightSteelBlue" />
+        <SolidColorBrush x:Key="brushWatermarkBorder" Color="Indigo" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <Behaviour:TextInputToVisibilityConverter x:Key="TextInputToVisibilityConverter" />
+        
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="80"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="140"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="270"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Content="Company Name" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="100" Style="{DynamicResource FormLabel}"/>
+            <!--<TextBox Grid.Column="2" Text="{Binding Path=CurrentInformation.Company, Mode=TwoWay}"  TextWrapping="Wrap" 
+                     HorizontalAlignment="Left" VerticalAlignment="Top" 
+                     Width="270" Style="{DynamicResource FlatTextBox}"/>-->
+            <TextBlock Grid.Column="2"  Text="Company Name" Foreground="{StaticResource brushWatermarkForeground}" 
+                       Visibility="{Binding ElementName=txtUserEntry, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                       Height="25" Style="{DynamicResource FlatTextBlock}"/>
+            <TextBox Grid.Column="2" Name="txtUserEntry" Background="Transparent" Text="{Binding Path=CurrentInformation.Company, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged , ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
+                     Style="{DynamicResource FlatTextBox}" 
+                     ToolTip="{Binding CurrentInformation.ErrorCollection[Company]}" 
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="80"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="140"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="270"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Content="Work Permit No" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="140" Style="{DynamicResource FormLabel}"/>
+            <TextBlock Grid.Column="2"  Text="Work Permit No" Foreground="{StaticResource brushWatermarkForeground}" 
+                       Visibility="{Binding ElementName=txtUserEntry1, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                       Height="25" Style="{DynamicResource FlatTextBlock}"/>
+            <TextBox Grid.Column="2" Name="txtUserEntry1" Background="Transparent" Text="{Binding Path=CurrentInformation.ContractNumber, Mode=TwoWay, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
+                     Style="{DynamicResource FlatTextBox}"
+                     ToolTip="{Binding CurrentInformation.ErrorCollection[ContractNumber]}"
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
+            
+            <!--<TextBox Grid.Column="2" Text="{Binding Path=CurrentInformation.ContractNumber, Mode=TwoWay}" HorizontalAlignment="Left"  
+                     VerticalAlignment="Top" Width="270" Style="{DynamicResource FlatTextBox}" />-->
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="80"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="140"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="95"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="95"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="95"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Content="Type" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="100" Style="{DynamicResource FormLabel}"/>
+            <RadioButton Grid.Column="2" IsChecked="{Binding Path=IsSuccessOne, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=1,Mode=TwoWay}" 
+                         Content="Daily" Style="{DynamicResource RadioStyle}" />
+            <RadioButton Grid.Column="3" IsChecked="{Binding Path=IsSuccessOne, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=2,Mode=TwoWay}" 
+                         Content="Weekly" Style="{DynamicResource RadioStyle}" />
+            <RadioButton Grid.Column="4" IsChecked="{Binding Path=IsSuccessOne, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=3,Mode=TwoWay}" 
+                         Content="Monthly" Style="{DynamicResource RadioStyle}" />
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="80"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="140"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="300"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Content="Start Date" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="100" Style="{DynamicResource FormLabel}"/>
+            <DatePicker Grid.Column="2" SelectedDate="{Binding Path=CurrentInformation.StartDateTime, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}}" DisplayDate="{Binding DateTime.Now}" HorizontalAlignment="Left"  
+                     VerticalAlignment="Top" Width="270" 
+                        Style="{DynamicResource DatePickerStyle}"/>
+        
+        </Grid>
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="80"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="140"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="270"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Content="Number Of Contractors" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="140" Style="{DynamicResource FormLabel}"/>
+            <!--<TextBox Grid.Column="2" Text="{Binding Path=CurrentInformation.NumberOfContractors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged , ValidatesOnDataErrors=True}" HorizontalAlignment="Left"  
+                     VerticalAlignment="Top" Width="270" Style="{DynamicResource FlatTextBox}"></TextBox>-->
+            <TextBlock Grid.Column="2"  Text="No Of Contractor" Foreground="{StaticResource brushWatermarkForeground}" 
+                       Visibility="{Binding ElementName=TextContractorNo, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                       Height="25" Style="{DynamicResource FlatTextBlock}"/>
+            <TextBox Grid.Column="2" Name="TextContractorNo" Background="Transparent"
+                     Text="{Binding Path=CurrentInformation.NumberOfContractors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged , ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
+                     Style="{DynamicResource FlatTextBox}"
+                     ToolTip="{Binding CurrentInformation.ErrorCollection[NumberOfContractors]}"
+                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
+
+            
+        </Grid>
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="70"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="145"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="140"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="140"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="3" Content="Reset" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="130" 
+                    Template="{DynamicResource ButtonPrimary}" Command="{Binding ResetCommand}">
+               
+            </Button>
+            <Button Grid.Column="2" Content="Generate" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="130" 
+                    Command="{Binding SaveCommand}" Template="{StaticResource ButtonPrimary}"
+                    IsEnabled="{Binding Path=GenerateBtnStatus, Converter={StaticResource GenBtnConverter}}"/>
+        </Grid>
+        <Grid Grid.Row="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="80"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="125"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="300"></ColumnDefinition>
+                <ColumnDefinition MaxWidth="300"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Content="QR Code" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="100" Style="{DynamicResource FormLabel}"/>
+            <Border Grid.Column="2" Style="{DynamicResource InputBorder}">
+                <Image Grid.Column="2" Source="{Binding Path=CurrentInformation.QrCode, Mode=TwoWay}"  Stretch="Fill" HorizontalAlignment="Left" Height="130"  VerticalAlignment="Top" Width="130"/>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="80">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="80"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="140"></ColumnDefinition>
+            <ColumnDefinition MaxWidth="300"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+            <Button Grid.Column="2" Content="Print" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="260"  Command="{Binding PrintCommand}" 
+                    IsEnabled="{Binding Path=ButtonStatus, Converter={StaticResource GenBtnConverter},Mode=TwoWay}" Template="{DynamicResource ButtonPrimary}"/>
+            <!--<Button Grid.Column="3" Content="btn" IsEnabled="False"></Button>-->
+        </Grid>
+        <!--<Grid Grid.Row="6">
+            <DataGrid Height="100" ItemsSource="{Binding Source=Lecturers}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Company" Binding="{Binding Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Contactor Number" Binding="{Binding Surname}"></DataGridTextColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>-->
+    </Grid>
+</UserControl>

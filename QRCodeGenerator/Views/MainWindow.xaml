@@ -1,0 +1,26 @@
+﻿<Window x:Class="QRGenerator.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:login="clr-namespace:QRGenerator.ViewModels"
+        xmlns:QRGenerator="clr-namespace:QRGenerator.ViewModels"
+        xmlns:loginview="clr-namespace:QRGenerator.Views"
+        xmlns:QRGeneratorview="clr-namespace:QRGenerator.Views"
+        xmlns:local="clr-namespace:QRGenerator"
+        mc:Ignorable="d"
+        Title="Device4U QRCode Generator" Height="500" Width="600" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <DataTemplate x:Name="loginVM" DataType="{x:Type login:LoginViewModel}">
+            <loginview:Login />
+        </DataTemplate>
+        <DataTemplate x:Name="qrgeneratorVM" DataType="{x:Type QRGenerator:QRGeneratorViewModel}">
+            <QRGeneratorview:QRGenerator />
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Border >
+            <ContentControl Content="{Binding CurrentViewModel}"/>
+        </Border>
+    </Grid>
+</Window>

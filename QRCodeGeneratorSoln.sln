@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRGenerator", "QRCodeGenerator\QRGenerator.csproj", "{07BC4130-952D-47DC-9346-816D1EF24EAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{6930596A-668A-44C8-BCE8-BC5E3D231A4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07BC4130-952D-47DC-9346-816D1EF24EAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07BC4130-952D-47DC-9346-816D1EF24EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07BC4130-952D-47DC-9346-816D1EF24EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07BC4130-952D-47DC-9346-816D1EF24EAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6930596A-668A-44C8-BCE8-BC5E3D231A4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6930596A-668A-44C8-BCE8-BC5E3D231A4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6930596A-668A-44C8-BCE8-BC5E3D231A4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6930596A-668A-44C8-BCE8-BC5E3D231A4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5CB68E9F-7BD8-49D2-90C5-2ACC6EB7EC71}
+	EndGlobalSection
+EndGlobal
